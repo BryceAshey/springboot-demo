@@ -1,7 +1,7 @@
 pipeline {
     agent {
         kubernetes {
-            defaultContainer 'jenkins-mvn'
+            defaultContainer 'jenkins-slave-java-maven'
         }
     }
     stages {
