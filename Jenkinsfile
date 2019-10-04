@@ -5,14 +5,14 @@ podTemplate(containers: [
         //, command: 'cat'
         )
     ]
-    , podRetention: always()
+    , podRetention: onFailure()
   ) {
 
   node(POD_LABEL) {
     stage('Build a Maven project') {
       container('jnlp') {        
-        git clone 'https://github.com/BryceAshey/springboot-demo.git'
-        cd springboot-demo
+        sh 'git clone https://github.com/BryceAshey/springboot-demo.git'
+        sh 'cd springboot-demo'
         sh 'mvn -B clean package'
       }
     }
