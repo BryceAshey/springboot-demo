@@ -9,10 +9,14 @@ podTemplate(containers: [
   ) {
 
   node(POD_LABEL) {
-    stage('Build a Maven project') {
+    checkout scm
+    stage('Pull Source') {
       container('jnlp') {        
         sh 'git clone https://github.com/BryceAshey/springboot-demo.git'
-        sh 'cd springboot-demo'
+      }
+    }
+    stage('Build') {
+      container('jnlp') {
         sh 'mvn -B clean package'
       }
     }
